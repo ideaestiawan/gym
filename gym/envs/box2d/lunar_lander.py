@@ -6,7 +6,7 @@ from Box2D.b2 import (edgeShape, circleShape, fixtureDef, polygonShape, revolute
 
 import gym
 from gym import spaces
-from gym.utils import seeding
+from gym.utils import seeding, EzPickle
 
 # Rocket trajectory optimization is a classic topic in Optimal Control.
 #
@@ -22,7 +22,7 @@ from gym.utils import seeding
 # Landing outside landing pad is possible. Fuel is infinite, so an agent can learn to fly and then land
 # on its first attempt. Please see source code for details.
 #
-# Too see heuristic landing, run:
+# To see heuristic landing, run:
 #
 # python gym/envs/box2d/lunar_lander.py
 #
@@ -70,7 +70,7 @@ class ContactDetector(contactListener):
             if self.env.legs[i] in [contact.fixtureA.body, contact.fixtureB.body]:
                 self.env.legs[i].ground_contact = False
 
-class LunarLander(gym.Env):
+class LunarLander(gym.Env, EzPickle):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
         'video.frames_per_second' : FPS
@@ -79,6 +79,7 @@ class LunarLander(gym.Env):
     continuous = False
 
     def __init__(self):
+        EzPickle.__init__(self)
         self.seed()
         self.viewer = None
 
