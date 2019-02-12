@@ -335,3 +335,5 @@ What's new
 - 2016-05-28: For controlled reproducibility, envs now support seeding
   (cf #91 and #135). The monitor records which seeds are used. We will
   soon add seed information to the display on the scoreboard.
+
+test
